@@ -1,0 +1,22 @@
+body {
+  background-color: #000000;
+  color: whitesmoke;
+}
+
+.carousel {
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.d-block {
+  max-height: 600px;
+}
+
+.random-four {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.searchDrinks {
+  max-width: 1000px;
+}
