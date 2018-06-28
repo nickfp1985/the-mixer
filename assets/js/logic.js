@@ -60,9 +60,20 @@ $(document).ready(function () {
                         url: fullQueryURLByID,
                         method: "GET"
                     }).then(function (res) {
-                        console.log(res);
+
+                        let drinkObj = res.drinks[0];
                         //HERE ARE THE RESULTS WE WILL USE TO GENERATE NEW PAGE WITH COMPLETE DRINK INFORMATION INCLUDING INREDIENTS, AMOUNTS, HOW TO INSTRUCTIONS ETC.
-                        console.log(res.drinks[0]);
+                        console.log(drinkObj);
+
+                        console.log(Object.keys(drinkObj));
+
+                        //CREATE AN ARRAY FROM OBJECT ENTRIES
+                        let drinkArray = Object.entries(drinkObj);
+                        console.log(drinkArray[9][0]);
+                        console.log(drinkArray[9][1]);
+                        //USE .MAP or .FILTER METHODS TO STORE INGREDIENTS INTO AN ARRAY -- should equal same length
+                        
+                        //USE .MAP or .FILTER METHODS TO STORE MEASUREMENTS INTO AN ARRAY -- should equal same length
                     });
 
                 });
