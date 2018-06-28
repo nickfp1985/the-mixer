@@ -1,22 +1,52 @@
 body {
   background-color: #000000;
   color: whitesmoke;
+  font-family: 'Lato', sans-serif;
 }
 
 .carousel {
   margin-left: 250px;
   margin-right: 250px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .d-block {
   max-height: 600px;
 }
 
+.container {
+  font-family: 'Lato', sans-serif;
+}
+
+.container-body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lato', sans-serif;
+}
+
+.statement {
+  padding: 05px;
+  text-align: center;
+}
+
 .random-four {
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
 }
 
+h2 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .searchDrinks {
-  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+.container-results {
+  display: none;
 }
