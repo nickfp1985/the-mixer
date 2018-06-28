@@ -48,5 +48,27 @@ h2 {
 }
 
 .container-results {
-  display: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-top: 30px;
+}
+
+.drink-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 50px;
+  padding: 30px;
+  font-family: 'Lato', sans-serif;
+}
+
+.info {
+  padding-top: 10px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.results-table {
+  text-align: center;
 }
