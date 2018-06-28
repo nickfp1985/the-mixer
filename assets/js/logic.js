@@ -1,90 +1,40 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-// functions to create random picture images in the dom 
-    function randomDrink1(){
-        let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-        
-            $.ajax({
-                url: queryURL,
-                method: 'get'
-            }).then(function (response) {
-                console.log(response.drinks[0]);
-                console.log(response.drinks[0].strDrinkThumb);
-                
-                let imgSrc = response.drinks[0].strDrinkThumb;
-                
-                let img = $(`<img src="${imgSrc}">`);
+    // function to create random picture images in the dom 
+    function randomDrink() {
+        for (let i = 0; i < 4; i++) {
 
-                let imgID = $(`<div>`);
-                imgID.text('Drink ID: ' + idDrink);
-                imgID.addClass('ID');
+            let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
-                // ID text
-                $('#results1').append(img);
-                $('#results1').append(imgID);
-
-                // 
+                $.ajax({
+                    url: queryURL,
+                    method: 'get'
+                }).then(function (response) {
+                    console.log(response.drinks[0]);
+                    console.log(response.drinks[0].strDrinkThumb);
+                    
+                    // variables 
+                    let drinkName = response.drinks[0]; 
+                    let div = $('<div>');
+                    let imgSrc = drinkName.strDrinkThumb;
+                    
+                    let img = $(`<img src="${imgSrc}" id="${drinkName.idDrink}">`);
+                    img.addClass('drinks').css({ "height": "250px", "width": "250px", "border-radius": "10px", "margin": "10px" });
+                    let name = $('<p>');
+                    name.text(drinkName.strDrink);
+                    name.addClass('name').css({ "text-align": "center" });
+                    
+                    // append info to page 
+                    div.append(img);
+                    div.append(name);
+                    $('.random-four').append(div);
+                })
+       
         }
-    )}
-    randomDrink1();
-// ======================================
-    function randomDrink2(){
-        let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-        
-        $.ajax({
-            url: queryURL,
-            method: 'get'
-        }).then(function (response) {
+    }
 
-            console.log(response.drinks[0].strDrinkThumb);
-        
-            let imgSrc = response.drinks[0].strDrinkThumb;
-            
-            let img = $(`<img src="${imgSrc}">`);
-            
-            $('#results2').append(img);
-        }
-    )}
-    randomDrink2();
-// ======================================
-    function randomDrink3(){
-        let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-        
-        $.ajax({
-            url: queryURL,
-            method: 'get'
-        }).then(function (response) {
-
-            console.log(response.drinks[0].strDrinkThumb);
-        
-            let imgSrc = response.drinks[0].strDrinkThumb;
-            
-            let img = $(`<img src="${imgSrc}">`);
-            
-            $('#results3').append(img)
-        }
-    )}
-    randomDrink3();
-// ======================================
-    function randomDrink4(){
-        let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-        
-        $.ajax({
-            url: queryURL,
-            method: 'get'
-        }).then(function (response) {
-
-            console.log(response.drinks[0].strDrinkThumb);
-
-            let imgSrc = response.drinks[0].strDrinkThumb;
-            
-            let img = $(`<img src="${imgSrc}">`);
-            
-            $('#results4').append(img)
-        }
-    )}
-    randomDrink4();
+    randomDrink();
 
     
-});        
-        
+
+});
