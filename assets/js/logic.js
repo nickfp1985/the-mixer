@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     // function to create random picture images in the dom 
     function randomDrink() {
+        
         for (let i = 0; i < 4; i++) {
 
             let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
@@ -12,7 +13,7 @@ $(document).ready(function () {
                 }).then(function (response) {
                     console.log(response.drinks[0]);
                     console.log(response.drinks[0].strDrinkThumb);
-                    
+                
                     // variables 
                     let drinkName = response.drinks[0]; 
                     let div = $('<div>');
@@ -28,12 +29,18 @@ $(document).ready(function () {
                     div.append(img);
                     div.append(name);
                     $('.random-four').append(div);
+                    
                 })
-       
+                
         }
     }
-
     randomDrink();
+
+    $(document).on('click', '.drinks', function(){
+        console.log($(this));
+        let drinkID = $(this).attr('id');
+        console.log(drinkID);
+    })
 
     
 
