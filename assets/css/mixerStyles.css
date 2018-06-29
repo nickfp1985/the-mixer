@@ -4,6 +4,14 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.navbar {
+  background-color: #F7EFCE !important;
+}
+
+.nav-link {
+  color: black;
+}
+
 .carousel {
   margin-left: 250px;
   margin-right: 250px;
@@ -33,14 +41,29 @@ body {
 .random-four {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
   margin: 0 auto;
+  align-content: center;
+}
+
+.btn {
+  margin-top: 10px;
+  border-color: #F7EFCE !important;
+  color: #F7EFCE !important;
+}
+
+.btn:hover {
+  background-color: #F7EFCE !important;
+  color: black !important;
 }
 
 h2 {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+h3 {
+  padding-bottom: 15px;
 }
 
 .searchDrinks {
@@ -55,7 +78,7 @@ h2 {
   padding-top: 30px;
 }
 
-.drink-page {
+.results-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,4 +95,8 @@ h2 {
 
 .results-table {
   text-align: center;
+}
+
+td {
+  line-height: 5px;
 }
