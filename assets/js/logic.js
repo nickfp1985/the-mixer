@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
+console.log('CONNECTED');
 
-    $('#searchDrink').on('click', function (event) {
+    $('#searchName').on('click', function (event) {
 
         event.preventDefault();
 
@@ -30,7 +31,7 @@ $(document).ready(function () {
             //USING JQUERY TO CREATE DIVS OR 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
-                let $target = $('.results');
+                let $target = $('.results-table');
 
                 let $imgThumbDiv = $(`<div>`)
                     .css({ "width": "200px", "display": "inline-block", "margin": "20px" });
