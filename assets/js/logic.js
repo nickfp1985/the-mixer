@@ -1,6 +1,50 @@
 $(document).ready(function () {
 
-console.log('CONNECTED');
+    /*NIGEL CODE:*/
+
+    randomDrink();
+    // function to create random picture images in the dom 
+    function randomDrink() {
+
+        for (let i = 0; i < 4; i++) {
+
+            let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+
+            $.ajax({
+                url: queryURL,
+                method: 'get'
+            }).then(function (response) {
+                console.log(response.drinks[0]);
+                console.log(response.drinks[0].strDrinkThumb);
+
+                // variables 
+                let drinkName = response.drinks[0];
+                let div = $('<div>');
+                let imgSrc = drinkName.strDrinkThumb;
+
+                let img = $(`<img src="${imgSrc}" id="${drinkName.idDrink}">`);
+                img.addClass('drinks').css({ "height": "250px", "width": "250px", "border-radius": "10px", "margin": "10px" });
+                let name = $('<p>');
+                name.text(drinkName.strDrink);
+                name.addClass('name').css({ "text-align": "center" });
+
+                // append info to page 
+                div.append(img);
+                div.append(name);
+                $('.random-four').append(div);
+
+            })
+
+        }
+    }
+
+    $(document).on('click', '.drinks', function () {
+        console.log($(this));
+        let drinkID = $(this).attr('id');
+        console.log(drinkID);
+    })
+
+    /*END NIGEL CODE:*/
 
     $('#searchName').on('click', function (event) {
 
@@ -31,7 +75,8 @@ console.log('CONNECTED');
             //USING JQUERY TO CREATE DIVS OR 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
-                let $target = $('.results-table');
+                let $target = $('.container-results');
+                $target.css({ "width": "980px", "display": "inline-block", "margin": "0 auto" });
 
                 let $imgThumbDiv = $(`<div>`)
                     .css({ "width": "200px", "display": "inline-block", "margin": "20px" });
@@ -62,31 +107,47 @@ console.log('CONNECTED');
                         method: "GET"
                     }).then(function (res) {
 
-                        let drinkObj = res.drinks[0];
                         //HERE ARE THE RESULTS WE WILL USE TO GENERATE NEW PAGE WITH COMPLETE DRINK INFORMATION INCLUDING INREDIENTS, AMOUNTS, HOW TO INSTRUCTIONS ETC.
-                        console.log(drinkObj);
-
-                        console.log(Object.keys(drinkObj));
-
-                        //CREATE AN ARRAY FROM OBJECT ENTRIES
-                        let drinkArray = Object.entries(drinkObj);
-                        console.log(drinkArray[9][0]);
-                        console.log(drinkArray[9][1]);
-                        //USE .MAP or .FILTER METHODS TO STORE INGREDIENTS INTO AN ARRAY -- should equal same length
+                        let data = res.drinks[0];
+                        console.log(data);
                         
-                        //USE .MAP or .FILTER METHODS TO STORE MEASUREMENTS INTO AN ARRAY -- should equal same length
+                        let drinkObj = {}
+
+                        drinkObj.name = data.strDrink;
+                        drinkObj.imgSrc = data.strDrinkThumb;
+                        drinkObj.ingredients = [];
+                        drinkObj.amounts = [];
+                        drinkObj.glassType = data.strGlass;
+                        
+                        //PULLING INGREDIENTS INTO ARRAY:
+                        //CREATE AN ARRAY FROM OBJECT ENTRIES
+                        let drinkInfoArray = Object.entries(data);
+                        //CREATE AN ARRAY OF ONLY INGREDIENT PAIRS:
+                        let drinkIngredients = [];
+                        for (let i = 9; i < 24; i++) {
+                            drinkIngredients.push(drinkInfoArray[i]);
+                        }
+                        //CREATE FINAL ARRAY OF INGREDIENTS:
+                        for (let i = 0; i < drinkIngredients.length; i++) {
+                            let individualIngredient = drinkIngredients[i][1];    
+                            if (individualIngredient === "") {
+                            } else if (individualIngredient) {
+                                drinkObj.ingredients.push(individualIngredient);
+                            }
+                        }
+                        console.log(drinkObj.ingredients);
+                        //INGREDIENTS PULLED
                     });
 
                 });
 
                 $imgThumbDiv.append($img);
                 $imgThumbDiv.append($name);
-
                 $target.append($imgThumbDiv);
             }
         })
 
     }) /*end of submit click listener*/
 
-    
+
 }) /*END DOC.READY()*/
