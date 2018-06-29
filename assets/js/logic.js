@@ -28,15 +28,20 @@ $(document).ready(function () {
                 name.text(drinkName.strDrink);
                 name.addClass('name').css({ "text-align": "center" });
 
+                //COPY AND PASTE INDIVIDUAL .AJAX REQUEST CODE HERE:
+               
+                //  END INDIVIDUAL .AJAX REQUESET CODE    */
+
                 // append info to page 
                 div.append(img);
                 div.append(name);
                 $('.random-four').append(div);
-
             })
 
         }
     }
+
+    /*COMMENTED THIS CLICK LISTENER OUT FOR NOW:
 
     $(document).on('click', '.drinks', function () {
         console.log($(this));
@@ -51,7 +56,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         //CLEAR PREVIOUS RESULTS ON INDEX.HTML:
-        $('.results').empty();
+        $('.container-results').empty();
 
         //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
         let $drinkName = $('#inputDrinkName').val().trim();
