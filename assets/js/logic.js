@@ -81,7 +81,6 @@ $(document).ready(function () {
                 let $imgThumbDiv = $(`<div>`)
                     .css({ "width": "200px", "display": "inline-block", "margin": "20px" });
 
-
                 let $img = $(`<img src="${res.drinks[i].strDrinkThumb}" id="${res.drinks[i].idDrink}" >`)
                     .css({ "width": "200px", "border-radius": "10px" });
                 let $name = $(`<h4>${res.drinks[i].strDrink}</h4>`)
