@@ -5,6 +5,7 @@ $(document).ready(function () {
     randomDrink();
     // function to create random picture images in the dom 
     function randomDrink() {
+        console.log('RANDOM DRINKS!');
 
         for (let i = 0; i < 4; i++) {
 
