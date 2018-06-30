@@ -73,9 +73,10 @@ h3 {
 
 .container-results {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding-top: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
 
 .final-drink {
@@ -85,6 +86,10 @@ h3 {
   line-height: 50px;
   padding: 30px;
   font-family: 'Lato', sans-serif;
+}
+
+.img-fluid {
+  margin: 30px;
 }
 
 .info {
