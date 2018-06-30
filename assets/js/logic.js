@@ -55,8 +55,9 @@ $(document).ready(function () {
 
         event.preventDefault();
 
+        $('.container-results').show();
         //CLEAR PREVIOUS RESULTS ON INDEX.HTML:
-        $('.container-results').empty();
+        // $('.container-results').empty();
 
         //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
         let $drinkName = $('#inputDrinkName').val().trim();
@@ -92,6 +93,7 @@ $(document).ready(function () {
 
                     console.log($(this).attr('id'));
                     /* https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=13060 : EXAMPLE URL FOR ID SEARCH */
+                    $('.final-drink').show();
 
                     let findByIdBaseURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
                     let drinkID = $(this).attr('id');
@@ -149,10 +151,8 @@ $(document).ready(function () {
                                 drinkObj.amounts.push(individualAmount);
                             }
                         }
-                        console.log("AMOUNTS:");
-                        console.log(drinkObj.amounts);
 
-                        console.log(drinkObj);
+                        $('.list').empty();
 
                         $('.drink-name').text(`${drinkObj.name}`);
                         $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
