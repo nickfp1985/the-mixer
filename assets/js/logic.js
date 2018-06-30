@@ -17,7 +17,7 @@ $(document).ready(function () {
                 console.log(response.drinks[0]);
                 console.log(response.drinks[0].strDrinkThumb);
 
-                // variables 
+                // set variables for final html page 
                 let drinkName = response.drinks[0];
                 let div = $('<div>');
                 let imgSrc = drinkName.strDrinkThumb;
@@ -114,14 +114,16 @@ $(document).ready(function () {
                         //HERE ARE THE RESULTS WE WILL USE TO GENERATE NEW PAGE WITH COMPLETE DRINK INFORMATION INCLUDING INREDIENTS, AMOUNTS, HOW TO INSTRUCTIONS ETC.
                         let data = res.drinks[0];
                         console.log(data);
+                        console.log(Object.keys(data));
                         
                         let drinkObj = {}
 
-                        drinkObj.name = data.strDrink;
                         drinkObj.imgSrc = data.strDrinkThumb;
+                        drinkObj.name = data.strDrink;
+                        drinkObj.withAlcohol = data.strAlcoholic;
+                        drinkObj.glassType = data.strGlass;
                         drinkObj.ingredients = [];
                         drinkObj.amounts = [];
-                        drinkObj.glassType = data.strGlass;
                         
                         //PULLING INGREDIENTS INTO ARRAY:
                         //CREATE AN ARRAY FROM OBJECT ENTRIES
@@ -139,8 +141,40 @@ $(document).ready(function () {
                                 drinkObj.ingredients.push(individualIngredient);
                             }
                         }
+                        console.log("INGREDIENTS");
                         console.log(drinkObj.ingredients);
-                        //INGREDIENTS PULLED
+
+                        let amountsInfoArray = Object.entries(data);
+                        let drinkAmounts = [];
+                        for (let i = 24; i < 39; i++){
+                            drinkAmounts.push(amountsInfoArray[i]);
+                        }
+                        //CREATE FINAL ARRAY OF AMOUNTS:
+                        for (let i = 0; i < drinkAmounts.length; i++){
+                            let individualAmount = drinkAmounts[i][1];
+                            if (individualAmount === " ") {
+                            } else if (individualAmount) {
+                                drinkObj.amounts.push(individualAmount);
+                            }
+                        }
+                        console.log("AMOUNTS:");
+                        console.log(drinkObj.amounts);
+
+                        console.log(drinkObj);
+
+                        $('.drink-name').text(`${drinkObj.name}`);
+                        $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
+                        $('.img-fluid').attr('src', `${drinkObj.imgSrc}`);
+                        $('.drink-glass').text(`${drinkObj.glassType}`);
+
+                        // for(let i = 0; i < drinkObj.ingredients.length; i++)
+
+                        
+
+
+
+
+
                     });
 
                 });
