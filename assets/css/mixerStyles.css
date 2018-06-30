@@ -95,6 +95,11 @@ h3 {
   margin: 30px;
 }
 
+drinkThumb2 {
+  margin: auto 0;
+  width: 200px;
+}
+
 .info {
   padding-top: 10px;
   text-align: center;
@@ -103,6 +108,8 @@ h3 {
 
 .results-table {
   text-align: center;
+  margin: auto 0px;
+  width: 300px;
 }
 
 td {
@@ -135,7 +142,7 @@ td {
   border: solid 2px #F7EFCE;
 }
 
-.login-div input {
+.login-input {
   display: block;
   border: 1px solid #ccc;
   border-radius: 5px;
