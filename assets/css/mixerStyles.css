@@ -92,10 +92,14 @@ h3 {
 }
 
 .drinkThumb1 {
+  max-height: 250px;
+  max-width: 250px;
   margin: 30px;
 }
 
 drinkThumb2 {
+  max-height: 350px;
+  max-width: 350px;
   margin: auto 0;
   width: 200px;
 }
