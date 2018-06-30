@@ -81,21 +81,13 @@ $(document).ready(function () {
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
                 let $target = $('.container-results');
-                $target.css({ "width": "980px", "display": "inline-block", "margin": "0 auto" });
-
-                let $imgThumbDiv = $(`<div>`)
-                    .css({ "width": "200px", "display": "inline-block", "margin": "20px" });
 
                 let $img = $(`<img src="${res.drinks[i].strDrinkThumb}" id="${res.drinks[i].idDrink}" >`)
-                    .css({ "width": "200px", "border-radius": "10px" });
-                let $name = $(`<h4>${res.drinks[i].strDrink}</h4>`)
-                    .css({ "text-align": "center" });
+                            .addClass('img-fluid')
+                            .addClass('drinkThumb1');
 
                 //APPLYING CLICK LISTENER TO EACH 'THUMBNAIL RESULT' - ON CLICK THE DIV WILL NEED TO:
-                //  - CLEAR OUT RESULTS PANEL
-                //  - CREATE A NEW .AJAX REQUEST USING THE "FIND BY ID" API FEATURE
-                //  - UPDATE PAGE WITH FINAL RESULTS
-                //  - UPDATED PAGE WILL NEED A "GO BACK" OR "NEW SEARCH" BUTTON
+                //PASSING .AJAX CALL TO EACH RESULTS IMAGE ON CLICK:
                 $img.on('click', function () {
 
                     console.log($(this).attr('id'));
@@ -164,24 +156,34 @@ $(document).ready(function () {
 
                         $('.drink-name').text(`${drinkObj.name}`);
                         $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
-                        $('.img-fluid').attr('src', `${drinkObj.imgSrc}`);
+                        $('.drinkThumb2').attr('src', `${drinkObj.imgSrc}`);
                         $('.drink-glass').text(`${drinkObj.glassType}`);
 
-                        // for(let i = 0; i < drinkObj.ingredients.length; i++)
+                        for(let i = 0; i < drinkObj.ingredients.length; i++) {
 
+                            let $row = $('<tr>').addClass(`item:${i}`);
+    
+                            let $ingredient = $(`<td class="ingredient border-right">${drinkObj.ingredients[i]}</td>`);
+                            let $amount = $(`<td class="measure">${drinkObj.amounts[i]}</td>`);
+    
+                            $row.append($ingredient);
+                            $row.append($amount);
+    
+                            $('.list').append($row);
+
+                        }
                         
-
-
-
-
 
                     });
 
-                });
+                }); /*end image click listener*/
+                            
+                let $name = $(`<h4>${res.drinks[i].strDrink}</h4>`)
+                            .css({ "text-align": "center" });
+                
+                $img.append($name);
+                $target.append($img);
 
-                $imgThumbDiv.append($img);
-                $imgThumbDiv.append($name);
-                $target.append($imgThumbDiv);
             }
         })
 
