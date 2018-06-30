@@ -167,6 +167,23 @@ $(document).ready(function () {
 
     })
 
+    $('#searchAlcohol').on('click', function (event) {
+
+        event.preventDefault();
+        
+        $('.landing-page').hide();
+        $('.container-results').empty();
+        $('.container-results').show();
+
+        let $alcoholName = $('#inputAlcohol').val().trim();
+        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=";
+        let queryURL = baseURL + $alcoholName;
+        queryURL.toString().trim();
+
+        ajaxRequest(queryURL);
+
+    });
+
     $('#searchName').on('click', function (event) {
 
         event.preventDefault();
@@ -174,7 +191,6 @@ $(document).ready(function () {
         $('.landing-page').hide();
         $('.container-results').empty();
         $('.container-results').show();
-
 
         //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
         let $drinkName = $('#inputDrinkName').val().trim();
@@ -184,9 +200,17 @@ $(document).ready(function () {
 
         console.log(queryURL);
 
+        //EXAMPLE AJAX REQUEST:
+        ajaxRequest(queryURL);
+
+    }) /*end of submit click listener*/
+
+    //AJAX REQUEST FUNCTION TAKES UNIQUE QUERY URL AS ARGUMENT:
+    function ajaxRequest(uniqueURL) {
+
         //FIRST .AJAX REQUEST:
         $.ajax({
-            url: queryURL,
+            url: uniqueURL,
             method: "GET"
         }).then(function (res) {
             console.log(res);
@@ -220,8 +244,8 @@ $(document).ready(function () {
 
             }
         })
+    }
 
-    }) /*end of submit click listener*/
 
 
 }) /*END DOC.READY()*/
