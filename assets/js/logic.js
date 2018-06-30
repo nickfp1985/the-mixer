@@ -17,7 +17,7 @@ $(document).ready(function () {
                 console.log(response.drinks[0]);
                 console.log(response.drinks[0].strDrinkThumb);
 
-                // variables 
+                // set variables for final html page 
                 let drinkName = response.drinks[0];
                 let div = $('<div>');
                 let imgSrc = drinkName.strDrinkThumb;
@@ -28,15 +28,20 @@ $(document).ready(function () {
                 name.text(drinkName.strDrink);
                 name.addClass('name').css({ "text-align": "center" });
 
+                //COPY AND PASTE INDIVIDUAL .AJAX REQUEST CODE HERE:
+               
+                //  END INDIVIDUAL .AJAX REQUESET CODE    */
+
                 // append info to page 
                 div.append(img);
                 div.append(name);
                 $('.random-four').append(div);
-
             })
 
         }
     }
+
+    /*COMMENTED THIS CLICK LISTENER OUT FOR NOW:
 
     $(document).on('click', '.drinks', function () {
         console.log($(this));
@@ -51,7 +56,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         //CLEAR PREVIOUS RESULTS ON INDEX.HTML:
-        $('.results').empty();
+        $('.container-results').empty();
 
         //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
         let $drinkName = $('#inputDrinkName').val().trim();
@@ -76,21 +81,13 @@ $(document).ready(function () {
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
                 let $target = $('.container-results');
-                $target.css({ "width": "980px", "display": "inline-block", "margin": "0 auto" });
-
-                let $imgThumbDiv = $(`<div>`)
-                    .css({ "width": "200px", "display": "inline-block", "margin": "20px" });
 
                 let $img = $(`<img src="${res.drinks[i].strDrinkThumb}" id="${res.drinks[i].idDrink}" >`)
-                    .css({ "width": "200px", "border-radius": "10px" });
-                let $name = $(`<h4>${res.drinks[i].strDrink}</h4>`)
-                    .css({ "text-align": "center" });
+                            .addClass('img-fluid')
+                            .addClass('drinkThumb1');
 
                 //APPLYING CLICK LISTENER TO EACH 'THUMBNAIL RESULT' - ON CLICK THE DIV WILL NEED TO:
-                //  - CLEAR OUT RESULTS PANEL
-                //  - CREATE A NEW .AJAX REQUEST USING THE "FIND BY ID" API FEATURE
-                //  - UPDATE PAGE WITH FINAL RESULTS
-                //  - UPDATED PAGE WILL NEED A "GO BACK" OR "NEW SEARCH" BUTTON
+                //PASSING .AJAX CALL TO EACH RESULTS IMAGE ON CLICK:
                 $img.on('click', function () {
 
                     console.log($(this).attr('id'));
@@ -109,14 +106,16 @@ $(document).ready(function () {
                         //HERE ARE THE RESULTS WE WILL USE TO GENERATE NEW PAGE WITH COMPLETE DRINK INFORMATION INCLUDING INREDIENTS, AMOUNTS, HOW TO INSTRUCTIONS ETC.
                         let data = res.drinks[0];
                         console.log(data);
+                        console.log(Object.keys(data));
                         
                         let drinkObj = {}
 
-                        drinkObj.name = data.strDrink;
                         drinkObj.imgSrc = data.strDrinkThumb;
+                        drinkObj.name = data.strDrink;
+                        drinkObj.withAlcohol = data.strAlcoholic;
+                        drinkObj.glassType = data.strGlass;
                         drinkObj.ingredients = [];
                         drinkObj.amounts = [];
-                        drinkObj.glassType = data.strGlass;
                         
                         //PULLING INGREDIENTS INTO ARRAY:
                         //CREATE AN ARRAY FROM OBJECT ENTRIES
@@ -134,15 +133,57 @@ $(document).ready(function () {
                                 drinkObj.ingredients.push(individualIngredient);
                             }
                         }
+                        console.log("INGREDIENTS");
                         console.log(drinkObj.ingredients);
-                        //INGREDIENTS PULLED
+
+                        let amountsInfoArray = Object.entries(data);
+                        let drinkAmounts = [];
+                        for (let i = 24; i < 39; i++){
+                            drinkAmounts.push(amountsInfoArray[i]);
+                        }
+                        //CREATE FINAL ARRAY OF AMOUNTS:
+                        for (let i = 0; i < drinkAmounts.length; i++){
+                            let individualAmount = drinkAmounts[i][1];
+                            if (individualAmount === " ") {
+                            } else if (individualAmount) {
+                                drinkObj.amounts.push(individualAmount);
+                            }
+                        }
+                        console.log("AMOUNTS:");
+                        console.log(drinkObj.amounts);
+
+                        console.log(drinkObj);
+
+                        $('.drink-name').text(`${drinkObj.name}`);
+                        $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
+                        $('.drinkThumb2').attr('src', `${drinkObj.imgSrc}`);
+                        $('.drink-glass').text(`${drinkObj.glassType}`);
+
+                        for(let i = 0; i < drinkObj.ingredients.length; i++) {
+
+                            let $row = $('<tr>').addClass(`item:${i}`);
+    
+                            let $ingredient = $(`<td class="ingredient border-right">${drinkObj.ingredients[i]}</td>`);
+                            let $amount = $(`<td class="measure">${drinkObj.amounts[i]}</td>`);
+    
+                            $row.append($ingredient);
+                            $row.append($amount);
+    
+                            $('.list').append($row);
+
+                        }
+                        
+
                     });
 
-                });
+                }); /*end image click listener*/
+                            
+                let $name = $(`<h4>${res.drinks[i].strDrink}</h4>`)
+                            .css({ "text-align": "center" });
+                
+                $img.append($name);
+                $target.append($img);
 
-                $imgThumbDiv.append($img);
-                $imgThumbDiv.append($name);
-                $target.append($imgThumbDiv);
             }
         })
 
