@@ -25,12 +25,6 @@
       <div class="navbar-collapse collapse" id="navbar9">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Our Mission</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="//codeply.com">Creators</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">New Search</a>
           </li>
         </ul>
@@ -61,7 +55,7 @@
   <div class="statement">
     <p>Looking to make some cocktails tonight? You've come to the right place!</p>
     <p>Search for your favorite drink or try something new.</p>
-    <p>Whether it's a cool Margarita or a nice stiff one with Gin, we've got the right recipe for you.</p>
+    <p>Whether it's a cool Margarita or a nice stiff one with some Gin, we've got the right recipe for you.</p>
   </div>
 
   <div class="container-body">
@@ -76,17 +70,17 @@
           <div class="form-group">
             <label for="drinkName">Drink Name</label>
             <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputDrinkName">
-            <input class="btn btn-primary" id="searchName" type="submit" value="Submit">
+            <input class="btn btn-outline-warning" id="searchName" type="submit" value="Search">
           </div>
           <div class="form-group">
             <label for="inputAlcohol">Alcohol</label>
             <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputAlcohol">
-            <input class="btn btn-primary" id="searchAlcohol" type="submit" value="Submit">
+            <input class="btn btn-outline-warning" id="searchAlcohol" type="submit" value="Search">
           </div>
           <div class="form-group">
             <label for="inputIngredient">Main Ingredient</label>
             <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputIngredient">
-            <input class="btn btn-primary" id="searchIngredient" type="submit" value="Submit">
+            <input class="btn btn-outline-warning" id="searchIngredient" type="submit" value="Search">
           </div>
           <div class="form-group">
             <label for="inputGlass">Glass</label>
@@ -97,7 +91,7 @@
               <option>Collins glass</option>
               <option>Punch bowl</option>
             </select>
-            <input class="btn btn-primary" id="searchGlass" type="submit" value="Submit">
+            <input class="btn btn-outline-warning" id="searchGlass" type="submit" value="Search">
           </div>
         </form>
       </card>
@@ -114,8 +108,9 @@
   </div>
 
 
-  <div class="drink-page">
-    <img class="img-fluid" src="http://via.placeholder.com/250x250">
+  <div class="results-container">
+
+    <img class="img-fluid drinkThumb" src="http://via.placeholder.com/250x250">
 
     <div class="info">
       <h3 class="drink-name">Sex on the Beach</h3>
@@ -124,29 +119,34 @@
     </div>
 
 
-    <div class="results-container">
-      <div class="results-table">
-        <table class="table table-hover table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Ingredient</th>
-              <th scope="col">Measure</th>
-            </tr>
-          </thead>
-          <tbody class="list">
-            <tr>
-              <td class="ingredient border-right">Tequila</td>
-              <td class="measure">4.5cl</td>
-            </tr>
-            <tr>
-              <td class="ingredient border-right">Salt</td>
-              <td class="measure">4.5cl</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
+
+    <div class="results-table">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Ingredient</th>
+            <th scope="col">Measure</th>
+          </tr>
+        </thead>
+        <tbody class="list">
+          <tr>
+            <td class="ingredient border-right">Tequila</td>
+            <td class="measure">4.5cl</td>
+          </tr>
+          <tr>
+            <td class="ingredient border-right">Salt</td>
+            <td class="measure">4.5cl</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
+    <div class="instructions">
+
+      <p>Shake and strain into a chilled glass.</p>
+
+    </div>
 
 
   </div>
