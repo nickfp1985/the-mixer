@@ -184,8 +184,6 @@ $(document).ready(function () {
                 $img.append($name);
                 $target.append($img);
 
-                console.log($img);
-
             }
         })
 
