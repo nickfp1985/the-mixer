@@ -56,6 +56,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         $('.container-results').show();
+        $('.landing-page').hide();
         //CLEAR PREVIOUS RESULTS ON INDEX.HTML:
         // $('.container-results').empty();
 
@@ -93,8 +94,8 @@ $(document).ready(function () {
 
                     console.log($(this).attr('id'));
                     /* https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=13060 : EXAMPLE URL FOR ID SEARCH */
+                    $('.drinkThumb1').hide();
                     $('.final-drink').show();
-
                     let findByIdBaseURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
                     let drinkID = $(this).attr('id');
                     let fullQueryURLByID = findByIdBaseURL + drinkID;
