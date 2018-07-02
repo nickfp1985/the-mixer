@@ -31,7 +31,7 @@ $(document).ready(function() {
     console.log("login button is working!");
     console.log(userEmail + " " + userPw);
 
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPw).catch(function(error) {
       // handle login errors here
       let errorCode = error.code;
       let errorMessage = error.message;
