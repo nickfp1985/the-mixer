@@ -283,7 +283,7 @@ $(document).ready(function () {
         //BUTTON:
         let $newSearchDynamic = $('<input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">');
 
-        //APPEND, APPEND, APPEND
+        //APPEND, APPEND, APPEND:
         $bootstrapCol.append($newSearchDynamic);
         $bootstrapRow.append($bootstrapCol);
         $bootstrapContainer.append($bootstrapRow);
