@@ -4,6 +4,16 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+h2 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+h3 {
+  padding-bottom: 15px;
+}
+
 .navbar {
   background-color: #F7EFCE !important;
 }
@@ -57,16 +67,6 @@ body {
   color: black !important;
 }
 
-h2 {
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-h3 {
-  padding-bottom: 15px;
-}
-
 .searchDrinks {
   display: flex;
   justify-content: center;
@@ -98,21 +98,18 @@ h3 {
   margin: 30px;
 }
 
-drinkThumb2 {
-  max-height: 350px;
-  max-width: 350px;
+.drinkThumb2 {
+  max-height: 550px;
+  max-width: 550px;
   margin: auto 0;
-  width: 200px;
+}
+
+.instructions {
+max-width: 550px;
 }
 
 .final-drink {
   display: none;
-}
-
-.drinkThumb1 {
-  max-height: 250px;
-  max-width: 250px;
-  margin: 30px;
 }
 
 .container-table {
@@ -121,12 +118,6 @@ drinkThumb2 {
   justify-content: center;
   align-items: center;
   align-content: center;
-}
-
-.drinkThumb2 {
-  max-height: 550px;
-  max-width: 550px;
-  margin: auto 0;
 }
 
 .info {
