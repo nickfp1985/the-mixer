@@ -89,6 +89,20 @@ h3 {
   line-height: 50px;
   padding: 30px;
   font-family: 'Lato', sans-serif;
+  display: none;
+}
+
+.drinkThumb1 {
+  max-height: 250px;
+  max-width: 250px;
+  margin: 30px;
+}
+
+drinkThumb2 {
+  max-height: 350px;
+  max-width: 350px;
+  margin: auto 0;
+  width: 200px;
 }
 
 .final-drink {
