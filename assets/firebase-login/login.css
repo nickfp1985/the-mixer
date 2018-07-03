@@ -1,0 +1,56 @@
+body {
+  background: black;
+  padding: 0px;
+  margin: 0px;
+  font-size: 16;
+}
+
+.login-input,
+.btn {
+  font-weight: 700;
+}
+
+.login-div,
+.logout-div {
+  color: whitesmoke;
+  border: 2px solid #F7EFCE;
+  border-radius: 5px;
+  width: 20%;
+  margin: 0px auto;
+  margin-top: 150px;
+  padding: 20px;
+}
+
+.login-div input {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #F7EFCE;
+  color: black;
+  padding: 15px;
+  outline: none;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+.login-div input:focus {
+  border: 2px solid red;
+}
+
+.login-btn,
+.logout-btn {
+  background: black !important;
+  color: #F7EFCE !important;
+  border: 2px solid #F7EFCE;
+  border-radius: 5px;
+  padding: 15px;
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.login-btn:hover,
+.logout-btn:hover {
+  background: #F7EFCE !important;
+  color: black !important;
+}
