@@ -51,7 +51,8 @@ body {
   color: #F7EFCE !important;
 }
 
-.btn:hover {
+.btn:hover,
+.login-btn:hover {
   background-color: #F7EFCE !important;
   color: black !important;
 }
@@ -73,18 +74,34 @@ h3 {
 
 .container-results {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  padding-top: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  display: none;
 }
 
-.results-container {
+.final-drink {
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 50px;
   padding: 30px;
   font-family: 'Lato', sans-serif;
+  display: none;
+}
+
+.drinkThumb1 {
+  max-height: 250px;
+  max-width: 250px;
+  margin: 30px;
+}
+
+drinkThumb2 {
+  max-height: 350px;
+  max-width: 350px;
+  margin: auto 0;
+  width: 200px;
 }
 
 .info {
@@ -95,8 +112,55 @@ h3 {
 
 .results-table {
   text-align: center;
+  margin: auto 0px;
+  width: 300px;
 }
 
 td {
   line-height: 5px;
 }
+
+.login-input,
+.login-btn {
+  font-weight: 700;
+}
+
+.login-btn {
+  margin-top: 10px;
+  border: solid 1px #F7EFCE !important;
+  background-color: black !important;
+  color: #F7EFCE !important;
+  border-radius: 10px;
+  padding: 15px;
+  display: block;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.login-div {
+  width: 20%;
+  margin: 0px auto;
+  margin-top: 150px;
+  padding: 20px;
+  border-radius: 25px;
+  border: solid 2px #F7EFCE;
+}
+
+.login-input {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  padding: 15px;
+  outline: none;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/*.display-none {
+  display: none
+}
+
+.hide {
+  visibility: hidden;
+}*/

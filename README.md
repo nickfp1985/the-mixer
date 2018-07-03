@@ -1,6 +1,6 @@
 # project1
 
-The Mixer
+The Mixer  https://nickfp1985.github.io/the-mixer/
 Enrique Lopez, Nick Peddie, Nigel Levine, Phil Taft-Dick
 
 ### APIs

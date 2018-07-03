@@ -32,85 +32,131 @@
     </div>
   </nav>
 
-  <div id="slideshow" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="assets/images/cocktail-1.jpg">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="assets/images/cocktail-2.jpg">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="assets/images/cocktail-3.jpg">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="assets/images/cocktail-4.png">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="assets/images/cocktail-5.jpg">
+
+  <div class="login-div">
+    <input class="login-input" type="email" placeholder="Email" />
+    <input class="login-input" type="password" placeholder="Password" />
+
+    <button class="login-btn">Login</button>
+  </div>
+
+  <div class="landing-page">
+
+    <div id="slideshow" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="assets/images/cocktail-1.jpg">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/images/cocktail-2.jpg">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/images/cocktail-3.jpg">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/images/cocktail-4.png">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="assets/images/cocktail-5.jpg">
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="statement">
-    <p>Looking to make some cocktails tonight? You've come to the right place!</p>
-    <p>Search for your favorite drink or try something new.</p>
-    <p>Whether it's a cool Margarita or a nice stiff one with some Gin, we've got the right recipe for you.</p>
-  </div>
-
-  <div class="container-body">
-    <div class="random-four">
+    <div class="statement">
+      <p>Looking to make some cocktails tonight? You've come to the right place!</p>
+      <p>Search for your favorite drink or try something new.</p>
+      <p>Whether it's a cool Margarita or a nice stiff one with some Gin, we've got the right recipe for you.</p>
     </div>
 
-    <h2>Let's make a drink!</h2>
+    <div class="container-body">
+      <div class="random-four">
+      </div>
 
-    <div class="searchDrinks">
-      <card>
-        <form>
-          <div class="form-group">
-            <label for="drinkName">Drink Name</label>
-            <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputDrinkName">
-            <input class="btn btn-outline-warning" id="searchName" type="submit" value="Search">
-          </div>
-          <div class="form-group">
-            <label for="inputAlcohol">Alcohol</label>
-            <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputAlcohol">
-            <input class="btn btn-outline-warning" id="searchAlcohol" type="submit" value="Search">
-          </div>
-          <div class="form-group">
-            <label for="inputIngredient">Main Ingredient</label>
-            <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputIngredient">
-            <input class="btn btn-outline-warning" id="searchIngredient" type="submit" value="Search">
-          </div>
-          <div class="form-group">
-            <label for="inputGlass">Glass</label>
-            <select style="width:500px;font-size:14pt;" class="form-control" id="glassType">
-              <option>Highball glass</option>
-              <option>Cocktail glass</option>
-              <option>Old-fashioned glass</option>
-              <option>Collins glass</option>
-              <option>Punch bowl</option>
-            </select>
-            <input class="btn btn-outline-warning" id="searchGlass" type="submit" value="Search">
-          </div>
-        </form>
-      </card>
+      <h2>Let's make a drink!</h2>
+
+      <div class="searchDrinks">
+        <card>
+          <form>
+            <div class="form-group">
+              <label for="drinkName">Drink Name</label>
+              <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputDrinkName">
+              <input class="btn btn-outline-warning" id="searchName" type="submit" value="Search">
+            </div>
+            <div class="form-group">
+              <label for="inputAlcohol">Alcohol</label>
+              <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputAlcohol">
+              <input class="btn btn-outline-warning" id="searchAlcohol" type="submit" value="Search">
+            </div>
+            <div class="form-group">
+              <label for="inputIngredient">Main Ingredient</label>
+              <input style="width:500px;font-size:14pt;" type="text" class="form-control" id="inputIngredient">
+              <input class="btn btn-outline-warning" id="searchIngredient" type="submit" value="Search">
+            </div>
+            <div class="form-group">
+              <label for="inputGlass">Glass</label>
+              <select style="width:500px;font-size:14pt;" class="form-control" id="glassType">
+                <option>Highball glass</option>
+                <option>Cocktail glass</option>
+                <option>Old-fashioned glass</option>
+                <option>Collins glass</option>
+                <option>Punch bowl</option>
+              </select>
+              <input class="btn btn-outline-warning" id="searchGlass" type="submit" value="Search">
+            </div>
+          </form>
+        </card>
+      </div>
     </div>
+
   </div>
-  </div>
+  <!--On first click HIDE landing-page div -->
 
   <div class="container-results">
-    <div>
-      <a href="https://placeholder.com" class="result-drink">
-        <img class="img-fluid" src="http://via.placeholder.com/250x250">
+    <!--On first click SHOW container-results div -->
+    <!-- <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
       </a>
-    </div>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a>
+      <a href="https://placeholder.com" class="result-drink">
+        <img class="img-fluid drinkThumb1" src="http://via.placeholder.com/250x250">
+      </a> -->
   </div>
 
 
-  <div class="results-container">
+  <div class="final-drink">
+    <!--HIDE until container-results clicked-->
+    <!--SHOW final-drink container-->
 
-    <img class="img-fluid drinkThumb" src="http://via.placeholder.com/250x250">
+    <img class="img-fluid drinkThumb2" src="http://via.placeholder.com/250x250">
 
     <div class="info">
       <h3 class="drink-name">Sex on the Beach</h3>
@@ -130,14 +176,7 @@
           </tr>
         </thead>
         <tbody class="list">
-          <tr>
-            <td class="ingredient border-right">Tequila</td>
-            <td class="measure">4.5cl</td>
-          </tr>
-          <tr>
-            <td class="ingredient border-right">Salt</td>
-            <td class="measure">4.5cl</td>
-          </tr>
+
         </tbody>
       </table>
     </div>
@@ -147,6 +186,10 @@
       <p>Shake and strain into a chilled glass.</p>
 
     </div>
+
+    <input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">
+    <!--on click HIDE final-drink container-->
+    <!--on click SHOW landing page-->
 
 
   </div>
