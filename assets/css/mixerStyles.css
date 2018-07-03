@@ -73,18 +73,19 @@ h3 {
 }
 
 .container-results {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  align-content: center;
   display: none;
 }
 
-.final-drink {
-  display: flex;
+.container-drinks {
+  display: flex !important;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   line-height: 50px;
   padding: 30px;
   font-family: 'Lato', sans-serif;
@@ -104,6 +105,30 @@ drinkThumb2 {
   width: 200px;
 }
 
+.final-drink {
+  display: none;
+}
+
+.drinkThumb1 {
+  max-height: 250px;
+  max-width: 250px;
+  margin: 30px;
+}
+
+.container-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.drinkThumb2 {
+  max-height: 550px;
+  max-width: 550px;
+  margin: auto 0;
+}
+
 .info {
   padding-top: 10px;
   text-align: center;
@@ -111,13 +136,18 @@ drinkThumb2 {
 }
 
 .results-table {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   text-align: center;
   margin: auto 0px;
   width: 300px;
 }
 
 td {
-  line-height: 5px;
+  line-height: 30px;
+  vertical-align: middle !important;
 }
 
 .login-input,
@@ -144,6 +174,7 @@ td {
   padding: 20px;
   border-radius: 25px;
   border: solid 2px #F7EFCE;
+  display: none;
 }
 
 .login-input {
@@ -156,11 +187,3 @@ td {
   width: 100%;
   margin-bottom: 20px;
 }
-
-/*.display-none {
-  display: none
-}
-
-.hide {
-  visibility: hidden;
-}*/
