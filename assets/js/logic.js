@@ -333,10 +333,12 @@ $(document).ready(function () {
                 $img.append($name);
                 $target.append($img);
 
-            }
+            })
         })
     }
 
+        }
+        )}
+        
+}); 
 
-
-}) /*END DOC.READY()*/
