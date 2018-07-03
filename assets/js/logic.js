@@ -1,13 +1,111 @@
 $(document).ready(function () {
 
-    /*NIGEL CODE:*/
+    //RENDER FOUR RANDOM DRINKS ON PAGE LOAD:
+    randomDrink(4);
 
-    randomDrink();
-    // function to create random picture images in the dom 
-    function randomDrink() {
-        console.log('RANDOM DRINKS!');
+    //EVERY DRINK-IMAGE-THUMBNAIL WILL RENDER FINAL RESULTS PAGE ON 'CLICK':
+    $(document).on('click', '.results-img', function () {
 
-        for (let i = 0; i < 4; i++) {
+        //DOUBLE-CHECK ID IS PRESENT ON IMAGE:
+        console.log($(this).attr('id'));
+        /* THIS ID WILL GENERATE UNIQUE QUERY */
+
+        $('.container-results').empty();
+        $('.container-results').hide();
+        $('.final-drink').show();
+
+        //UNLIKE OTHER API REQUESTS, THIS ONE TARGETS UNIQUE DRINK ID:
+        let findByIdBaseURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
+        let drinkID = $(this).attr('id');
+        let fullQueryURLByID = findByIdBaseURL + drinkID;
+        fullQueryURLByID.toString().trim();
+
+        ajaxRequestByID(fullQueryURLByID);
+
+    })
+
+    //NEW-SEARCH BTN WILL RENDER LANDING PAGE AND NEW-SEARCH-FORM ON 'CLICK':
+    $(document).on('click', '#newSearch', function (event) {
+
+        event.preventDefault();
+        //HIDE OR SHOW DIVS APPROPRIATELY:
+        $('.landing-page').show();
+        $('.container-results').empty();
+        $('.random-four').empty();
+        $('.final-drink').hide();
+        randomDrink(4);
+
+        //CLEAR PREVIOUS SEARCH INPUTS
+        $('#inputDrinkName').val('');
+        $('#inputAlcohol').val('');
+
+    });
+
+    //SEARCH BY DRINK NAME:
+    $('#searchName').on('click', function (event) {
+
+        event.preventDefault();
+        //HIDE OR SHOW DIVS APPROPRIATELY:
+        $('.landing-page').hide();
+        $('.container-results').empty();
+        $('.container-results').show();
+        $('.new-search-container').show();
+
+        //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
+        let $drinkName = $('#inputDrinkName').val().trim();
+        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+        let queryURL = baseURL + $drinkName;
+        queryURL.toString().trim();
+
+        ajaxRequest(queryURL);
+
+    });
+
+    //SEARCH BY INGREDIENT OR TYPE OF ALCOHOL:
+    $('#searchAlcohol').on('click', function (event) {
+
+        event.preventDefault();
+        //HIDE OR SHOW DIVS APPROPRIATELY:
+        $('.landing-page').hide();
+        $('.container-results').empty();
+        $('.container-results').show();
+        $('.new-search-container').show();
+
+        let $alcoholName = $('#inputAlcohol').val().trim();
+        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=";
+        let queryURL = baseURL + $alcoholName;
+        queryURL.toString().trim();
+
+        ajaxRequest(queryURL);
+
+    });
+
+    //SEARCH BY TYPE OF GLASS:
+    $('#searchGlass').on('click', function (event) {
+
+        event.preventDefault();
+        //HIDE OR SHOW DIVS APPROPRIATELY:
+        $('.landing-page').hide();
+        $('.container-results').empty();
+        $('.container-results').show();
+        $('.new-search-container').show();
+
+        //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
+        let $glassType = $('#glassType').val().trim();
+        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=";
+        let queryURL = baseURL + $glassType;
+        queryURL.toString().trim();
+
+        ajaxRequest(queryURL);
+
+    });
+
+    //***FUNCTIONS:***//
+    //****************//
+
+    function randomDrink(num) {
+
+        for (let i = 0; i < num; i++) {
 
             let queryURL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
@@ -18,7 +116,7 @@ $(document).ready(function () {
                 console.log(response.drinks[0]);
                 console.log(response.drinks[0].strDrinkThumb);
 
-                // set variables for final html page 
+                // SET VARIABLES FOR FINAL HTML PAGE: 
                 let drinkName = response.drinks[0];
                 let div = $('<div>');
                 let imgSrc = drinkName.strDrinkThumb;
@@ -37,65 +135,45 @@ $(document).ready(function () {
                 name.text(drinkName.strDrink);
                 name.addClass('name').css({ "text-align": "center" });
 
-                //COPY AND PASTE INDIVIDUAL .AJAX REQUEST CODE HERE:
-
-                //  END INDIVIDUAL .AJAX REQUESET CODE    */
-
-                // append info to page 
+                // APPEND INFO TO PAGE:
                 div.append(img);
                 div.append(name);
                 $('.random-four').append(div);
             })
-
         }
-    }
+    };
 
-    /*COMMENTED THIS CLICK LISTENER OUT FOR NOW:
-    $(document).on('click', '.drinks', function () {
-        console.log($(this));
-        let drinkID = $(this).attr('id');
-        console.log(drinkID);
-    })
-    /*END NIGEL CODE:*/
-
-    $(document).on('click', '.results-img', function () {
-
-        console.log($(this).attr('id'));
-
-        $('.container-results').empty();
-        $('.container-results').hide();
-        $('.final-drink').show();
-        /* https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=13060 : EXAMPLE URL FOR ID SEARCH */
-
-        let findByIdBaseURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
-        let drinkID = $(this).attr('id');
-        let fullQueryURLByID = findByIdBaseURL + drinkID;
-        fullQueryURLByID.toString().trim();
+    //AJAX GET REQUEST FUNCTION TO RENDER FINAL PAGE RESULTS PAGE BY UNIQUE DRINK ID:
+    function ajaxRequestByID(queryByID) {
 
         $.ajax({
-            url: fullQueryURLByID,
+            url: queryByID,
             method: "GET"
         }).then(function (res) {
 
-            //HERE ARE THE RESULTS WE WILL USE TO GENERATE NEW PAGE WITH COMPLETE DRINK INFORMATION INCLUDING INREDIENTS, AMOUNTS, HOW TO INSTRUCTIONS ETC.
+            //THE API/QUERY RESPONSE OBJECT:
             let data = res.drinks[0];
             console.log(data);
             console.log(Object.keys(data));
+            // *************************** //
 
+            //CREATE A NEW OBJECT TO HOLD PERTINENT INFO:
             let drinkObj = {}
-
+            //INDIVIDUAL VALUES EASILY PAIRED:
             drinkObj.imgSrc = data.strDrinkThumb;
             drinkObj.name = data.strDrink;
             drinkObj.withAlcohol = data.strAlcoholic;
             drinkObj.glassType = data.strGlass;
             drinkObj.instructions = data.strInstructions;
+            //CREATE ARRAYS FROM OBJECT LIST: WE NEED TO PULL ONLY INGREDIENTS OR AMOUNTS WITH VALUES LISTED: 
+            //(THE RESPONSE OBJECT PROVIDES BLANK DATA UP TO 15 EACH)
             drinkObj.ingredients = [];
             drinkObj.amounts = [];
 
             //PULLING INGREDIENTS INTO ARRAY:
-            //CREATE AN ARRAY FROM OBJECT ENTRIES
+            //(CREATE AN ARRAY FROM OBJECT ENTRIES)
             let drinkInfoArray = Object.entries(data);
-            //CREATE AN ARRAY OF ONLY INGREDIENT PAIRS:
+            //CREATE AN ARRAY OF ONLY INGREDIENT PAIRS: (LISTED IN RESULTS OBJECT ARRAY INDICES [9] - [24])
             let drinkIngredients = [];
             for (let i = 9; i < 24; i++) {
                 drinkIngredients.push(drinkInfoArray[i]);
@@ -108,13 +186,12 @@ $(document).ready(function () {
                     drinkObj.ingredients.push(individualIngredient);
                 }
             }
-            console.log("INGREDIENTS");
-            console.log(drinkObj.ingredients);
+            //PULLING AMOUNTS/MEASUREMENTS INTO ARRAY:
+            //(CAN USE SAME OBJECT ENTRIES ARRAY AS ABOVE ^ drinkInfoArray[i])
 
-            let amountsInfoArray = Object.entries(data);
             let drinkAmounts = [];
             for (let i = 24; i < 39; i++) {
-                drinkAmounts.push(amountsInfoArray[i]);
+                drinkAmounts.push(drinkInfoArray[i]);
             }
             //CREATE FINAL ARRAY OF AMOUNTS:
             for (let i = 0; i < drinkAmounts.length; i++) {
@@ -124,9 +201,8 @@ $(document).ready(function () {
                     drinkObj.amounts.push(individualAmount);
                 }
             }
-            console.log("AMOUNTS:");
-            console.log(drinkObj.amounts);
 
+            //RENDER FINAL DRINK PAGE:
             $('.drink-name').text(`${drinkObj.name}`);
             $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
             $('.drinkThumb2').attr('src', `${drinkObj.imgSrc}`);
@@ -134,99 +210,26 @@ $(document).ready(function () {
             $('.instructions').html(`<p>${drinkObj.instructions}</p>`);
             $('.list').empty();
 
-            for (let i = 0; i < drinkObj.ingredients.length; i++) {
 
-                let $row = $('<tr>').addClass(`item:${i}`);
+            //FOREACH() METHOD TO PLACE INGREDIENTS AND AMOUNTS INTO FINAL RESULTS TABLE:
+            //DECLARING INCREMENTER FOR USE IN THE BELOW .forEach() IN ORDER TO ACCESS drinkObj.amounts[] ARRAY:
+            let amountIndex = 0;
 
-                let $ingredient = $(`<td class="ingredient border-right">${drinkObj.ingredients[i]}</td>`);
-                let $amount = $(`<td class="measure">${drinkObj.amounts[i]}</td>`);
+            drinkObj.ingredients.forEach(function (ing) {
+                //CREATE A NEW ROW TO HOLD INGREDIENT (LEFT) AMOUNT (RIGHT):
+                let $row = $('<tr class="ingredients-amounts-row">');
+                let $ingredient = $(`<td class="ingredient border-right">${ing}</td>`);
+                let $amount = $(`<td class="measure">${drinkObj.amounts[amountIndex]}</td>`);
+                amountIndex++;
 
-                $row.append($ingredient);
-                $row.append($amount);
-
+                $row.append($ingredient).append($amount);
+                //APPEND ROWS TO FINAL RESULTS TABLE:
                 $('.list').append($row);
+            })
+        }); /* END .THEN() */
+    }
 
-            }
-
-
-        });
-
-
-    })
-
-    $('#newSearch').on('click', function (event) {
-
-        event.preventDefault();
-
-        $('.landing-page').show();
-        $('.container-results').empty();
-        $('.random-four').empty();
-        $('.final-drink').hide();
-        randomDrink();
-
-    })
-
-    $('#searchAlcohol').on('click', function (event) {
-
-        event.preventDefault();
-
-        $('.landing-page').hide();
-        $('.container-results').empty();
-        $('.container-results').show();
-
-        let $alcoholName = $('#inputAlcohol').val().trim();
-        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=";
-        let queryURL = baseURL + $alcoholName;
-        queryURL.toString().trim();
-
-        ajaxRequest(queryURL);
-
-    });
-
-    $('#searchName').on('click', function (event) {
-
-        event.preventDefault();
-
-        $('.landing-page').hide();
-        $('.container-results').empty();
-        $('.container-results').show();
-
-        //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
-        let $drinkName = $('#inputDrinkName').val().trim();
-        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-        let queryURL = baseURL + $drinkName;
-        queryURL.toString().trim();
-
-        console.log(queryURL);
-
-        //EXAMPLE AJAX REQUEST:
-        ajaxRequest(queryURL);
-
-    }) /*end of submit click listener*/
-
-    $('#searchGlass').on('click', function (event) {
-
-        event.preventDefault();
-
-        $('.landing-page').hide();
-        $('.container-results').empty();
-        $('.container-results').show();
-
-        //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
-        let $glassType = $('#glassType').val().trim();
-        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=";
-        let queryURL = baseURL + $glassType;
-        queryURL.toString().trim();
-
-        console.log(queryURL);
-
-        //EXAMPLE AJAX REQUEST:
-        ajaxRequest(queryURL);
-
-    }) /*end of submit click listener*/
-
-
-    //AJAX REQUEST FUNCTION TAKES UNIQUE QUERY URL AS ARGUMENT:
+    //AJAX GET REQUEST FUNCTION TO RENDER INTIAL SEARCH RESULTS:
     function ajaxRequest(uniqueURL) {
 
         //FIRST .AJAX REQUEST:
@@ -236,30 +239,15 @@ $(document).ready(function () {
         }).then(function (res) {
             console.log(res);
 
-            //RESPONSE IS USUALLY AN ARRAY, SET UP A FOR LOOP WITH ARRAY.LENGTH:
+            //LOG RESPONSE & ASSIGN REFERENCE VARIABLE:
+            let drinkData = res.drinks;
+            console.log(drinkData);
+
+            //LENGTH OF RESPONSE OBJECT FOR LOOPING:
             let resultsLength = res.drinks.length;
             console.log(resultsLength);
-            console.log(resultsLength * 2);
 
-            // //APPEND NEWSEARCH BUTTON AHEAD OF FOR LOOP:
-            // // <input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">
-
-            // let $newSearchDynamic = $('<input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">');
-            // $newSearchDynamic.on('click', function (event) {
-
-            //     event.preventDefault();
-
-            //     $('.landing-page').show();
-            //     $('.container-results').empty();
-            //     $('.random-four').empty();
-            //     // $('.final-drink').hide();
-            //     randomDrink();
-
-            // });
-
-            // $('.container-results').after($newSearchDynamic);
-
-            //USING JQUERY TO CREATE DIVS OR 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
+            //JQUERY TO CREATE 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
 
@@ -271,13 +259,7 @@ $(document).ready(function () {
                     .addClass('img-fluid');
                 // .addClass('drinkThumb1');
 
-                //APPLYING CLICK LISTENER TO EACH 'THUMBNAIL RESULT' - ON CLICK THE DIV WILL NEED TO:
-                //PASSING .AJAX CALL TO EACH RESULTS IMAGE ON CLICK:
-                // $img.on('click', function () {
-
-                //     //IF ERROR RETURN PASTE HERE:
-
-                // }); /*end image click listener*/
+                //CLICK LISTENER FOR IMAGES IS ON $(document).on('click', 'results-img', function() {})
 
                 let $name = $(`<h5>${res.drinks[i].strDrink}</h5>`)
                     .css({ "text-align": "center", "color": "white", "margin-top": "10px" });
@@ -285,11 +267,28 @@ $(document).ready(function () {
                 $imgAndNameContainer.append($img);
                 $imgAndNameContainer.append($name);
 
-                $target.append($imgAndNameContainer);
-
+                $target.prepend($imgAndNameContainer);
 
             }
         })
+
+        //RENDER A NEW SEARCH BUTTON BELOW DRINK RESULTS: (LEVERAGING BOOTSTRAP CSS)
+        // ************************************************************************ //
+        //CONTAINER:
+        let $bootstrapContainer = $('<div class="container-fluid">').css('width', '100%');
+        //OUTER ROW:
+        let $bootstrapRow = $('<div class="row d-flex flex-row justify-content-center">').css('margin-top', '50px');
+        //COLUMN:
+        let $bootstrapCol = $('<div class="col-12 d-flex flex-row justify-content-center">');
+        //BUTTON:
+        let $newSearchDynamic = $('<input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">');
+
+        //APPEND, APPEND, APPEND
+        $bootstrapCol.append($newSearchDynamic);
+        $bootstrapRow.append($bootstrapCol);
+        $bootstrapContainer.append($bootstrapRow);
+        //APPEND TO CONTAINER DRINKS:
+        $('.container-results').append($bootstrapContainer);
 
     }
 
