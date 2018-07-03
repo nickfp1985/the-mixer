@@ -62,6 +62,7 @@ $(document).ready(function () {
 
         console.log($(this).attr('id'));
 
+        $('.container-results').empty();
         $('.container-results').hide();
         $('.final-drink').show();
         /* https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=13060 : EXAMPLE URL FOR ID SEARCH */
@@ -168,7 +169,7 @@ $(document).ready(function () {
     $('#searchAlcohol').on('click', function (event) {
 
         event.preventDefault();
-        
+
         $('.landing-page').hide();
         $('.container-results').empty();
         $('.container-results').show();
@@ -203,6 +204,28 @@ $(document).ready(function () {
 
     }) /*end of submit click listener*/
 
+    $('#searchGlass').on('click', function (event) {
+
+        event.preventDefault();
+
+        $('.landing-page').hide();
+        $('.container-results').empty();
+        $('.container-results').show();
+
+        //DEVELOPING QUERY URL STRING FROM DRINK-NAME INPUT:
+        let $glassType = $('#glassType').val().trim();
+        let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=";
+        let queryURL = baseURL + $glassType;
+        queryURL.toString().trim();
+
+        console.log(queryURL);
+
+        //EXAMPLE AJAX REQUEST:
+        ajaxRequest(queryURL);
+
+    }) /*end of submit click listener*/
+
+
     //AJAX REQUEST FUNCTION TAKES UNIQUE QUERY URL AS ARGUMENT:
     function ajaxRequest(uniqueURL) {
 
@@ -217,14 +240,35 @@ $(document).ready(function () {
             let resultsLength = res.drinks.length;
             console.log(resultsLength);
 
+            // //APPEND NEWSEARCH BUTTON AHEAD OF FOR LOOP:
+            // // <input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">
+
+            // let $newSearchDynamic = $('<input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">');
+            // $newSearchDynamic.on('click', function (event) {
+
+            //     event.preventDefault();
+
+            //     $('.landing-page').show();
+            //     $('.container-results').empty();
+            //     $('.random-four').empty();
+            //     // $('.final-drink').hide();
+            //     randomDrink();
+
+            // });
+
+            // $('.container-results').after($newSearchDynamic);
+
             //USING JQUERY TO CREATE DIVS OR 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
+
                 let $target = $('.container-results');
 
+                let $imgAndNameContainer = $('<div class="drinkThumb1">');
+
                 let $img = $(`<img src="${res.drinks[i].strDrinkThumb}" id="${res.drinks[i].idDrink}" class="results-img">`)
-                    .addClass('img-fluid')
-                    .addClass('drinkThumb1');
+                    .addClass('img-fluid');
+                // .addClass('drinkThumb1');
 
                 //APPLYING CLICK LISTENER TO EACH 'THUMBNAIL RESULT' - ON CLICK THE DIV WILL NEED TO:
                 //PASSING .AJAX CALL TO EACH RESULTS IMAGE ON CLICK:
@@ -234,14 +278,18 @@ $(document).ready(function () {
 
                 // }); /*end image click listener*/
 
-                let $name = $(`<h4>${res.drinks[i].strDrink}</h4>`)
-                    .css({ "text-align": "center" });
+                let $name = $(`<h5>${res.drinks[i].strDrink}</h5>`)
+                    .css({ "text-align": "center", "color": "white", "margin-top": "10px" });
 
-                $img.append($name);
-                $target.append($img);
+                $imgAndNameContainer.append($img);
+                $imgAndNameContainer.append($name);
+
+                $target.append($imgAndNameContainer);
+
 
             }
         })
+
     }
 
 }) /*END DOC.READY()*/
