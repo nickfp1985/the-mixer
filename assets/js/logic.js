@@ -239,6 +239,7 @@ $(document).ready(function () {
             //RESPONSE IS USUALLY AN ARRAY, SET UP A FOR LOOP WITH ARRAY.LENGTH:
             let resultsLength = res.drinks.length;
             console.log(resultsLength);
+            console.log(resultsLength * 2);
 
             // //APPEND NEWSEARCH BUTTON AHEAD OF FOR LOOP:
             // // <input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">
