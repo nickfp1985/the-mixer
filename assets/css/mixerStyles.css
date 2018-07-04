@@ -74,6 +74,7 @@ h3 {
 
 .container-results {
   display: flex !important;
+  padding: 30px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -99,7 +100,7 @@ h3 {
 .drinkThumb1 {
   max-height: 250px;
   max-width: 250px;
-  margin: 30px;
+  margin: 40px;
 }
 
 .drinkThumb2 {
@@ -110,7 +111,7 @@ h3 {
 }
 
 .instructions {
-max-width: 550px;
+  max-width: 550px;
 }
 
 .final-drink {
