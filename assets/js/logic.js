@@ -131,7 +131,6 @@ $(document).ready(function () {
                     });
                 let name = $('<p>');
 
-
                 name.text(drinkName.strDrink);
                 name.addClass('name').css({ "text-align": "center" });
 
