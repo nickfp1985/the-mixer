@@ -261,7 +261,7 @@ $(document).ready(function () {
                 //CLICK LISTENER FOR IMAGES IS ON $(document).on('click', 'results-img', function() {})
 
                 let $name = $(`<h5>${res.drinks[i].strDrink}</h5>`)
-                    .css({ "text-align": "center", "color": "white", "margin-top": "10px" });
+                    .css({ "text-align": "center", "color": "white", "margin": "10px 0 10px 0"});
 
                 $imgAndNameContainer.append($img);
                 $imgAndNameContainer.append($name);
