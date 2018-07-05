@@ -152,8 +152,6 @@ $(document).ready(function () {
 
             //THE API/QUERY RESPONSE OBJECT:
             let data = res.drinks[0];
-            console.log(data);
-            console.log(Object.keys(data));
             // *************************** //
 
             //CREATE A NEW OBJECT TO HOLD PERTINENT INFO:
@@ -203,7 +201,14 @@ $(document).ready(function () {
 
             //RENDER FINAL DRINK PAGE:
             $('.drink-name').text(`${drinkObj.name}`);
-            $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
+
+            if (drinkObj.withAlcohol === null) {
+                $('.drink-alcoholic').text('');
+            } else if (drinkObj.withAlcohol) {
+                $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
+            }
+
+
             $('.drinkThumb2').attr('src', `${drinkObj.imgSrc}`);
             $('.drink-glass').text(`${drinkObj.glassType}`);
             $('.instructions').html(`<p>${drinkObj.instructions}</p>`);
@@ -218,7 +223,12 @@ $(document).ready(function () {
                 //CREATE A NEW ROW TO HOLD INGREDIENT (LEFT) AMOUNT (RIGHT):
                 let $row = $('<tr class="ingredients-amounts-row">');
                 let $ingredient = $(`<td class="ingredient border-right">${ing}</td>`);
+
+                if (drinkObj.amounts[amountIndex] === undefined) {
+                    drinkObj.amounts[amountIndex] = "&nbsp;";
+                }
                 let $amount = $(`<td class="measure">${drinkObj.amounts[amountIndex]}</td>`);
+
                 amountIndex++;
 
                 $row.append($ingredient).append($amount);
@@ -240,12 +250,8 @@ $(document).ready(function () {
 
             //LOG RESPONSE & ASSIGN REFERENCE VARIABLE:
             let drinkData = res.drinks;
-            console.log(drinkData);
-
             //LENGTH OF RESPONSE OBJECT FOR LOOPING:
             let resultsLength = res.drinks.length;
-            console.log(resultsLength);
-
             //JQUERY TO CREATE 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
             //  (!)should probably substitute forEach or filter array methods here(!)
             for (let i = 0; i < resultsLength; i++) {
@@ -253,15 +259,11 @@ $(document).ready(function () {
                 let $target = $('.container-results');
 
                 let $imgAndNameContainer = $('<div class="drinkThumb1">');
-
-                let $img = $(`<img src="${res.drinks[i].strDrinkThumb}" id="${res.drinks[i].idDrink}" class="results-img">`)
+                let $img = $(`<img src="${drinkData[i].strDrinkThumb}" id="${drinkData[i].idDrink}" class="results-img">`)
                     .addClass('img-fluid');
-                // .addClass('drinkThumb1');
-
-                //CLICK LISTENER FOR IMAGES IS ON $(document).on('click', 'results-img', function() {})
-
-                let $name = $(`<h5>${res.drinks[i].strDrink}</h5>`)
-                    .css({ "text-align": "center", "color": "white", "margin": "10px 0 10px 0"});
+                // CLICK LISTENER FOR EACH IMAGE IS PREDIFINED FOR ALL IMAGES WITH CLASS ( .results-img ) //
+                let $name = $(`<h5>${drinkData[i].strDrink}</h5>`)
+                    .css({ "text-align": "center", "color": "white", "margin": "10px 0 10px 0" });
 
                 $imgAndNameContainer.append($img);
                 $imgAndNameContainer.append($name);
