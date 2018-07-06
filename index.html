@@ -20,15 +20,23 @@
     <div class="container">
       <div class="navbar-brand" style="font-size: 50px">The Mixer</div>
     </div>
+    <!-- user logout -->
+    <div class="logout-div" id="logout-id">
+      <input class="btn btn-outline-warning logout-btn my-2" type="submit" value="Logout">
+    </div>
   </nav>
 
+  <!-- user login -->
+  <div class="login-div" id="login-id">
+    <h2>Mixer Account</h2>
+    <input class="login-input" type="email" placeholder="Email..." id="user-email" />
+    <input class="login-input" type="password" placeholder="Password..." id="user-pw" />
 
-  <div class="login-div">
-    <input class="login-input" type="email" placeholder="Email" />
-    <input class="login-input" type="password" placeholder="Password" />
-
-    <button class="login-btn">Login</button>
+    <button type="button" class="btn btn-outline-warning login-btn">Login</button><br>
+    <div class="alert alert-danger" role="alert">No account with that User and/or Password.</div>
   </div>
+
+  <p id="login-msg"></p>
 
   <div class="landing-page">
 
@@ -147,6 +155,19 @@
     </div>
 
   </div>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCpBlDfxoIN6QnOPv207B_5r5KvxfJSsE8",
+      authDomain: "the-mixer.firebaseapp.com",
+      databaseURL: "https://the-mixer.firebaseio.com",
+      projectId: "the-mixer",
+      storageBucket: "the-mixer.appspot.com",
+      messagingSenderId: "390455708983"
+    };
+    firebase.initializeApp(config);
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
