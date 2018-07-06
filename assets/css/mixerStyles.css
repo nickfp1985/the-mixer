@@ -166,6 +166,11 @@ td {
   vertical-align: middle !important;
 }
 
+
+#login-msg {
+  text-align: center;
+}
+
 .login-input,
 .login-btn,
 .logout-btn {
@@ -215,3 +220,4 @@ td {
 .alert {
   display: none;
 }
+
