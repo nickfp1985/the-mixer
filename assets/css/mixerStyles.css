@@ -193,6 +193,7 @@ td {
   display: flex;
   flex-direction: column;
   align-content: center;
+  background: black;
   color: #F7EFCE;
   width: 25%;
   margin: 0px auto;
