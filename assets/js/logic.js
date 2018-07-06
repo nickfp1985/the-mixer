@@ -3,6 +3,9 @@ $(document).ready(function () {
     //RENDER FOUR RANDOM DRINKS ON PAGE LOAD:
     randomDrink(4);
 
+    //***CLICK-EVENTS***//
+    //*******************//
+
     //EVERY DRINK-IMAGE-THUMBNAIL WILL RENDER FINAL RESULTS PAGE ON 'CLICK':
     $(document).on('click', '.results-img', function () {
 
@@ -103,6 +106,7 @@ $(document).ready(function () {
     //***FUNCTIONS:***//
     //****************//
 
+    //RENDER RANDOM DRINK THUMBNAILS (CLICKABLE) ON EVERY PAGE LOAD: (NUMBER OF THUMBNAILS DICTATED BY 'NUM' PARAM)
     function randomDrink(num) {
 
         for (let i = 0; i < num; i++) {
@@ -113,8 +117,6 @@ $(document).ready(function () {
                 url: queryURL,
                 method: 'get'
             }).then(function (response) {
-                console.log(response.drinks[0]);
-                console.log(response.drinks[0].strDrinkThumb);
 
                 // SET VARIABLES FOR FINAL HTML PAGE: 
                 let drinkName = response.drinks[0];
@@ -140,7 +142,60 @@ $(document).ready(function () {
                 $('.random-four').append(div);
             })
         }
-    };
+    }
+
+    //AJAX GET REQUEST FUNCTION TO RENDER INTIAL SEARCH RESULTS:
+    function ajaxRequest(uniqueURL) {
+
+        //FIRST .AJAX REQUEST:
+        $.ajax({
+            url: uniqueURL,
+            method: "GET"
+        }).then(function (res) {
+
+            //LOG RESPONSE & ASSIGN REFERENCE VARIABLE:
+            let drinkData = res.drinks;
+            //LENGTH OF RESPONSE OBJECT FOR LOOPING:
+            let resultsLength = res.drinks.length;
+            //JQUERY TO CREATE 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
+            //  (!)should probably substitute forEach or filter array methods here(!)
+            for (let i = 0; i < resultsLength; i++) {
+
+                let $target = $('.container-results');
+                let $imgAndNameContainer = $('<div class="drinkThumb1">');
+                let $img = $(`<img src="${drinkData[i].strDrinkThumb}" id="${drinkData[i].idDrink}" class="results-img">`)
+                    .addClass('img-fluid');
+                // CLICK LISTENER FOR EACH IMAGE IS PREDIFINED FOR ALL IMAGES WITH CLASS ( .results-img ) //
+                let $name = $(`<h5>${drinkData[i].strDrink}</h5>`)
+                    .css({ "text-align": "center", "color": "white", "margin": "10px 0 10px 0" });
+
+                $imgAndNameContainer.append($img);
+                $imgAndNameContainer.append($name);
+
+                $target.prepend($imgAndNameContainer);
+
+            }
+        })
+
+        //RENDER A NEW SEARCH BUTTON BELOW DRINK RESULTS: (LEVERAGING BOOTSTRAP CSS)
+        // ************************************************************************ //
+        //CONTAINER:
+        let $bootstrapContainer = $('<div class="container-fluid">').css('width', '100%');
+        //OUTER ROW:
+        let $bootstrapRow = $('<div class="row d-flex flex-row justify-content-center">').css('margin-top', '50px');
+        //COLUMN:
+        let $bootstrapCol = $('<div class="col-12 d-flex flex-row justify-content-center">');
+        //BUTTON:
+        let $newSearchDynamic = $('<input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">');
+
+        //APPEND, APPEND, APPEND:
+        $bootstrapCol.append($newSearchDynamic);
+        $bootstrapRow.append($bootstrapCol);
+        $bootstrapContainer.append($bootstrapRow);
+        //APPEND TO CONTAINER DRINKS:
+        $('.container-results').append($bootstrapContainer);
+
+    }
 
     //AJAX GET REQUEST FUNCTION TO RENDER FINAL PAGE RESULTS PAGE BY UNIQUE DRINK ID:
     function ajaxRequestByID(queryByID) {
@@ -152,8 +207,6 @@ $(document).ready(function () {
 
             //THE API/QUERY RESPONSE OBJECT:
             let data = res.drinks[0];
-            console.log(data);
-            console.log(Object.keys(data));
             // *************************** //
 
             //CREATE A NEW OBJECT TO HOLD PERTINENT INFO:
@@ -203,92 +256,40 @@ $(document).ready(function () {
 
             //RENDER FINAL DRINK PAGE:
             $('.drink-name').text(`${drinkObj.name}`);
-            $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
+
+            if (drinkObj.withAlcohol === null) {
+                $('.drink-alcoholic').text('');
+            } else if (drinkObj.withAlcohol) {
+                $('.drink-alcoholic').text(`${drinkObj.withAlcohol}`);
+            }
+
             $('.drinkThumb2').attr('src', `${drinkObj.imgSrc}`);
             $('.drink-glass').text(`${drinkObj.glassType}`);
             $('.instructions').html(`<p>${drinkObj.instructions}</p>`);
             $('.list').empty();
 
-
             //FOREACH() METHOD TO PLACE INGREDIENTS AND AMOUNTS INTO FINAL RESULTS TABLE:
-            //DECLARING INCREMENTER FOR USE IN THE BELOW .forEach() IN ORDER TO ACCESS drinkObj.amounts[] ARRAY:
+            //DECLARING INCREMENTER FOR USE IN THE BELOW .forEach() IN ORDER TO SIMULTANEOUSLY ACCESS drinkObj.amounts[] ARRAY:
             let amountIndex = 0;
 
             drinkObj.ingredients.forEach(function (ing) {
                 //CREATE A NEW ROW TO HOLD INGREDIENT (LEFT) AMOUNT (RIGHT):
                 let $row = $('<tr class="ingredients-amounts-row">');
                 let $ingredient = $(`<td class="ingredient border-right">${ing}</td>`);
+
+                if (drinkObj.amounts[amountIndex] === undefined) {
+                    drinkObj.amounts[amountIndex] = "&nbsp;";
+                }
                 let $amount = $(`<td class="measure">${drinkObj.amounts[amountIndex]}</td>`);
+
                 amountIndex++;
 
                 $row.append($ingredient).append($amount);
                 //APPEND ROWS TO FINAL RESULTS TABLE:
                 $('.list').append($row);
             })
-        }); /* END .THEN() */
+        }) /* END .THEN() */
     }
 
-    //AJAX GET REQUEST FUNCTION TO RENDER INTIAL SEARCH RESULTS:
-    function ajaxRequest(uniqueURL) {
-
-        //FIRST .AJAX REQUEST:
-        $.ajax({
-            url: uniqueURL,
-            method: "GET"
-        }).then(function (res) {
-            console.log(res);
-
-            //LOG RESPONSE & ASSIGN REFERENCE VARIABLE:
-            let drinkData = res.drinks;
-            console.log(drinkData);
-
-            //LENGTH OF RESPONSE OBJECT FOR LOOPING:
-            let resultsLength = res.drinks.length;
-            console.log(resultsLength);
-
-            //JQUERY TO CREATE 'THUMBNAIL RESULTS' ON SCREEN CONTAINING DRINK IMAGE + DRINK NAME:
-            //  (!)should probably substitute forEach or filter array methods here(!)
-            for (let i = 0; i < resultsLength; i++) {
-
-                let $target = $('.container-results');
-
-                let $imgAndNameContainer = $('<div class="drinkThumb1">');
-
-                let $img = $(`<img src="${res.drinks[i].strDrinkThumb}" id="${res.drinks[i].idDrink}" class="results-img">`)
-                    .addClass('img-fluid');
-                // .addClass('drinkThumb1');
-
-                //CLICK LISTENER FOR IMAGES IS ON $(document).on('click', 'results-img', function() {})
-
-                let $name = $(`<h5>${res.drinks[i].strDrink}</h5>`)
-                    .css({ "text-align": "center", "color": "white", "margin": "10px 0 10px 0"});
-
-                $imgAndNameContainer.append($img);
-                $imgAndNameContainer.append($name);
-
-                $target.prepend($imgAndNameContainer);
-
-            }
-        })
-
-        //RENDER A NEW SEARCH BUTTON BELOW DRINK RESULTS: (LEVERAGING BOOTSTRAP CSS)
-        // ************************************************************************ //
-        //CONTAINER:
-        let $bootstrapContainer = $('<div class="container-fluid">').css('width', '100%');
-        //OUTER ROW:
-        let $bootstrapRow = $('<div class="row d-flex flex-row justify-content-center">').css('margin-top', '50px');
-        //COLUMN:
-        let $bootstrapCol = $('<div class="col-12 d-flex flex-row justify-content-center">');
-        //BUTTON:
-        let $newSearchDynamic = $('<input class="btn btn-outline-warning" id="newSearch" type="submit" value="New Search">');
-
-        //APPEND, APPEND, APPEND:
-        $bootstrapCol.append($newSearchDynamic);
-        $bootstrapRow.append($bootstrapCol);
-        $bootstrapContainer.append($bootstrapRow);
-        //APPEND TO CONTAINER DRINKS:
-        $('.container-results').append($bootstrapContainer);
-
-    }
 
 }) /*END DOC.READY()*/
