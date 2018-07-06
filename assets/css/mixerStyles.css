@@ -22,6 +22,10 @@ h3 {
   color: black;
 }
 
+.landing-page {
+  display:none;
+}
+
 .carousel {
   margin: auto;
   padding-top: 20px;
