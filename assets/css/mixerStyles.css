@@ -191,6 +191,7 @@ td {
 
 .login-div {
   display: flex;
+  flex-direction: column;
   align-content: center;
   color: #F7EFCE;
   width: 25%;
@@ -218,6 +219,7 @@ td {
 }
 
 .alert {
+  padding: 1px;
   display: none;
 }
 
