@@ -22,6 +22,10 @@ h3 {
   color: black;
 }
 
+.landing-page {
+  display: none;
+}
+
 .carousel {
   margin: auto;
   padding-top: 20px;
@@ -74,6 +78,12 @@ h3 {
 .login-btn:hover {
   background-color: #F7EFCE !important;
   color: black !important;
+}
+
+.logout-btn:hover {
+  background-color: #F7EFCE !important;
+  color: black !important;
+  border-color: black !important;
 }
 
 .searchDrinks {
@@ -157,39 +167,51 @@ td {
 }
 
 .login-input,
-.login-btn {
+.login-btn,
+.logout-btn {
   font-weight: 700;
 }
 
-.login-btn {
-  margin-top: 10px;
+.login-btn,
+.logout-btn {
+  margin-top: 10px !important;
   border: solid 1px #F7EFCE !important;
   background-color: black !important;
   color: #F7EFCE !important;
-  border-radius: 10px;
-  padding: 15px;
-  display: block;
-  width: 100%;
-  transition: 0.3s;
+  border-radius: 10px !important;
+  padding: 15px !important;
+  display: block !important;
+  transition: 0.3s !important;
 }
 
 .login-div {
-  width: 20%;
+  display: flex;
+  align-content: center;
+  color: #F7EFCE;
+  width: 25%;
   margin: 0px auto;
-  margin-top: 150px;
+  margin-top: 125px;
   padding: 20px;
-  border-radius: 25px;
+  border-radius: 10px;
   border: solid 2px #F7EFCE;
-  display: none;
 }
 
 .login-input {
   display: block;
-  border: 1px solid #ccc;
+  border: 1px solid #F7EFCE;
   border-radius: 5px;
-  background: #fff;
+  background: #F7EFCE;
+  color: black;
   padding: 15px;
   outline: none;
   width: 100%;
   margin-bottom: 20px;
+}
+
+.login-div input:focus {
+  border: 2px solid red;
+}
+
+.alert {
+  display: none;
 }
