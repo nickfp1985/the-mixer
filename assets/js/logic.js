@@ -123,9 +123,8 @@ $(document).ready(function () {
                 let div = $('<div>');
                 let imgSrc = drinkName.strDrinkThumb;
 
-                let img = $(`<img src="${imgSrc}" id="${drinkName.idDrink}" class="results-img">`);
-                img.addClass('drinks')
-                    .css({ "height": "250px", "width": "250px", "border-radius": "10px", "margin": "10px" })
+                let img = $(`<img src="${imgSrc}" id="${drinkName.idDrink}" class="results-img img-fluid">`);
+                img.css({ "flex": "1", "max-height": "250px", "max-width": "250px", "border-radius": "10px", "margin": "10px" })
                     .on('click', function () {
                         $('.landing-page').hide();
                         $('.container-results').empty();
