@@ -1,7 +1,5 @@
-# project1
-
-The Mixer  https://nickfp1985.github.io/the-mixer/
-* Enrique Lopez, Nick Peddie, Nigel Levine, Phil Taft-Dick
+# The Mixer ( https://nickfp1985.github.io/the-mixer/ )
+created by Enrique Lopez, Nick Peddie, Nigel Levine, Phil Taft-Dick
 
 * Frontend / HTML & CSS - Enrique & Nick
 * Backend JS/jQuery & API - Nigel & Phil
