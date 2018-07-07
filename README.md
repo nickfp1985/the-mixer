@@ -11,3 +11,4 @@ created by Enrique Lopez, Nick Peddie, Nigel Levine, Phil Taft-Dick
 
 ### Project Idea
 We are building an app where users can search for cocktails and get information on that cocktail including the ingredients, the type of glass and how to make the drink.
+* user: themixer@mixermail.com / pw: themixer
