@@ -3,6 +3,10 @@
 The Mixer  https://nickfp1985.github.io/the-mixer/
 Enrique Lopez, Nick Peddie, Nigel Levine, Phil Taft-Dick
 
+Frontend / HTML & CSS - Enrique & Nick
+Backend JS/jQuery & API - Nigel & Phil
+Firebase - Nick
+
 ### APIs
 1.  TheCocktailDB - https://www.thecocktaildb.com/api.php 
 2.  You Tube?  Yelp?
