@@ -1,7 +1,7 @@
 body {
   background-color: #000000;
   color: whitesmoke;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 h2 {
@@ -15,7 +15,7 @@ h3 {
 }
 
 .navbar {
-  background-color: #F7EFCE !important;
+  background-color: #f7efce !important;
 }
 
 .nav-link {
@@ -37,20 +37,19 @@ h3 {
   border-radius: 10px !important;
 }
 
-
 .d-block {
   max-height: 600px;
   border-radius: 10px !important;
 }
 
 .container {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .container-body {
   display: flex;
   flex-direction: column;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .statement {
@@ -67,21 +66,20 @@ h3 {
   justify-content: space-around;
 }
 
-
 .btn {
   margin-top: 10px;
-  border-color: #F7EFCE !important;
-  color: #F7EFCE !important;
+  border-color: #f7efce !important;
+  color: #f7efce !important;
 }
 
 .btn:hover,
 .login-btn:hover {
-  background-color: #F7EFCE !important;
+  background-color: #f7efce !important;
   color: black !important;
 }
 
 .logout-btn:hover {
-  background-color: #F7EFCE !important;
+  background-color: #f7efce !important;
   color: black !important;
   border-color: black !important;
 }
@@ -108,7 +106,7 @@ h3 {
   justify-content: center;
   line-height: 50px;
   padding: 30px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   display: none;
 }
 
@@ -166,7 +164,6 @@ td {
   vertical-align: middle !important;
 }
 
-
 #login-msg {
   text-align: center;
 }
@@ -180,9 +177,9 @@ td {
 .login-btn,
 .logout-btn {
   margin-top: 10px !important;
-  border: solid 1px #F7EFCE !important;
+  border: solid 1px #f7efce !important;
   background-color: black !important;
-  color: #F7EFCE !important;
+  color: #f7efce !important;
   border-radius: 10px !important;
   padding: 15px !important;
   display: block !important;
@@ -194,20 +191,20 @@ td {
   flex-direction: column;
   align-content: center;
   background: black;
-  color: #F7EFCE;
+  color: #f7efce;
   width: 25%;
   margin: 0px auto;
   margin-top: 125px;
   padding: 20px;
   border-radius: 10px;
-  border: solid 2px #F7EFCE;
+  border: solid 2px #f7efce;
 }
 
 .login-input {
   display: block;
-  border: 1px solid #F7EFCE;
+  border: 1px solid #f7efce;
   border-radius: 5px;
-  background: #F7EFCE;
+  background: #f7efce;
   color: black;
   padding: 15px;
   outline: none;
@@ -224,3 +221,30 @@ td {
   display: none;
 }
 
+.hub {
+  height: 25px;
+  width: 25px;
+}
+
+.footer {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: #f7efce !important;
+}
+
+.github {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+a {
+  color: black !important;
+}
+
+a:link {
+  text-decoration: none;
+}
